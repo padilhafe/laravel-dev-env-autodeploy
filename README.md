@@ -1,4 +1,4 @@
-# Projeto NMS
+# Laravel Development Enviroment AutoDeploy
 Este repositório tem o objetivo de automatizar o Deploy do ambiente de desenvolvimento Laravel, ele utiliza as seguintes tecologias:
 - Oracle Virtual Box: para criação da máquina virtual
 - Vagrant: para provisionar a máquina virtual
