@@ -1,5 +1,5 @@
 machines = {
-  "server" => {"memory" => "2048", "cpu" => "4", "image" => "bento/ubuntu-22.04"},
+  "nms-app-vm" => {"memory" => "2048", "cpu" => "4", "image" => "bento/ubuntu-22.04"},
 }
 
 Vagrant.configure("2") do |config|
