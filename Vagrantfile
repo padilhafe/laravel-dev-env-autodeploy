@@ -14,21 +14,26 @@ Vagrant.configure("2") do |config|
         vb.memory = conf["memory"]
         vb.cpus = conf["cpu"]        
       end
-      machine.vm.provision "shell", path: "provision.sh" 
-      machine.vm.provision "file", source: "./docker-compose.yml", destination: "/home/vagrant/projeto-nms/docker-compose.yml"
+      machine.vm.provision "shell", path: "./vagrant-provisions/vm-startup.sh" 
+      machine.vm.provision "file", source: "./vagrant-config/docker-compose.yml", destination: "/home/vagrant/projeto-nms/docker-compose.yml"
       machine.vm.provision "shell", inline: "chown vagrant:vagrant /home/vagrant/projeto-nms/docker-compose.yml" 
 
-      machine.vm.provision "file", source: "./Dockerfile", destination: "/home/vagrant/projeto-nms/Dockerfile"
+      machine.vm.provision "file", source: "./vagrant-config/Dockerfile", destination: "/home/vagrant/projeto-nms/Dockerfile"
       machine.vm.provision "shell", inline: "chown vagrant:vagrant /home/vagrant/projeto-nms/Dockerfile" 
 
-      machine.vm.provision "file", source: "./env", destination: "/home/vagrant/projeto-nms/.env"
+      machine.vm.provision "file", source: "./vagrant-config/env", destination: "/home/vagrant/projeto-nms/.env"
       machine.vm.provision "shell", inline: "chown vagrant:vagrant /home/vagrant/projeto-nms/.env" 
 
-      machine.vm.provision "file", source: "./nms-nginx.conf", destination: "/home/vagrant/projeto-nms/docker-compose/nginx/nms-nginx.conf"
+      machine.vm.provision "file", source: "./vagrant-config/nms-nginx.conf", destination: "/home/vagrant/projeto-nms/docker-compose/nginx/nms-nginx.conf"
       machine.vm.provision "shell", inline: "chown vagrant:vagrant /home/vagrant/projeto-nms/docker-compose/nginx/nms-nginx.conf" 
 
-      machine.vm.provision "file", source: "./init_db.sql", destination: "/home/vagrant/projeto-nms/docker-compose/mysql/init_db.sql"
+      machine.vm.provision "file", source: "./vagrant-config/init_db.sql", destination: "/home/vagrant/projeto-nms/docker-compose/mysql/init_db.sql"
       machine.vm.provision "shell", inline: "chown vagrant:vagrant /home/vagrant/projeto-nms/docker-compose/mysql/init_db.sql" 
+
+      machine.vm.provision "file", source: "./vagrant-config/composer.json", destination: "/home/vagrant/projeto-nms/composer.json"
+      machine.vm.provision "shell", inline: "chown vagrant:vagrant /home/vagrant/projeto-nms/composer.json" 
+
+      machine.vm.provision "shell", path: "./vagrant-provisions/docker-startup.sh"
     end
   end
 end

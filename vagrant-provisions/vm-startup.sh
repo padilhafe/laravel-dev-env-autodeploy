@@ -9,6 +9,7 @@ sudo usermod -aG docker vagrant
 git clone https://github.com/laravel/laravel.git
 mv /home/vagrant/laravel/ /home/vagrant/projeto-nms/
 cd projeto-nms/
+rm composer.json
 
 # CRIA AS PASTAS DE CONFIGURACAO DO CONTAINER
 mkdir -p /home/vagrant/projeto-nms/docker-compose/nginx/
